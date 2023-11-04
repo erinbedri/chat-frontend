@@ -3,8 +3,25 @@
 :root {
     --main-color: #3cc3bd;
     --secondary-color: #c1eeeb;
+
+    --main-bg-color: #f0f8f8;
 }
 
 body {
     font-family: "Montserrat", sans-serif;
+    background-color: var(--main-bg-color);
+}
+
+.link-light {
+    text-decoration: none;
+    color: white;
+}
+
+.link-dark {
+    text-decoration: none;
+    color: var(--main-color);
+}
+
+.active {
+    text-decoration: underline;
 }

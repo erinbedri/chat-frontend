@@ -1,0 +1,18 @@
+#navigation {
+    display: flex;
+    padding: 1.25rem 4rem;
+
+    background-color: var(--main-color);
+}
+
+.navigation-logo {
+    width: 15%;
+}
+
+.navigation-controls {
+    width: 85%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 1rem;
+}
