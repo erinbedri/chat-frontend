@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComments } from "@fortawesome/free-solid-svg-icons";
 
 import "./navigation.css";
 
@@ -10,13 +12,13 @@ export default function Navigation() {
         <div id="navigation">
             <div className="navigation-logo">
                 <NavLink className="link-light" to="/">
-                    <h2 onClick={() => setActive("")}>Chat App</h2>
+                    <FontAwesomeIcon icon={faComments} />
                 </NavLink>
             </div>
 
             <div className="navigation-controls">
                 <NavLink className="link-light" to="/login">
-                    <p>Login</p>
+                    <p onClick={() => setActive("")}>Login</p>
                 </NavLink>
 
                 <NavLink className="link-light" to="/register">
