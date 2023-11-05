@@ -3,10 +3,12 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComments } from "@fortawesome/free-solid-svg-icons";
 
-import { logout } from "../../services/authService";
+import { useGlobalContext } from "../../context";
 import "./navigation.css";
 
 export default function Navigation() {
+    const { user, logoutUser } = useGlobalContext();
+
     const [isActive, setActive] = useState("");
 
     return (
@@ -18,21 +20,25 @@ export default function Navigation() {
             </div>
 
             <div className="navigation-controls">
-                <NavLink className="link-light" to="/login">
-                    <p onClick={() => setActive("")}>Login</p>
-                </NavLink>
-
-                <NavLink className="link-light" to="/register">
-                    <p>Register</p>
-                </NavLink>
-
-                <NavLink className="link-light" to="/profile">
-                    <p>Profile</p>
-                </NavLink>
-
-                <p className="link-light" onClick={logout}>
-                    Logout
-                </p>
+                {user ? (
+                    <>
+                        <NavLink className="link-light" to="/profile">
+                            <p>Profile</p>
+                        </NavLink>
+                        <p className="link-light" onClick={logoutUser}>
+                            Logout
+                        </p>
+                    </>
+                ) : (
+                    <>
+                        <NavLink className="link-light" to="/login">
+                            <p onClick={() => setActive("")}>Login</p>
+                        </NavLink>
+                        <NavLink className="link-light" to="/register">
+                            <p>Register</p>
+                        </NavLink>
+                    </>
+                )}
             </div>
         </div>
     );

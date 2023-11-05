@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { BounceLoader } from "react-spinners";
+
+import { useGlobalContext } from "../../context";
 
 import { register } from "../../services/authService";
+import Loader from "../../components/Loader/Loader";
 import registerImage from "../../assets/images/register.png";
 import "./auth.css";
 
 export default function Register() {
     const navigate = useNavigate();
+
+    const { saveUser } = useGlobalContext();
 
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState("");
@@ -53,6 +57,7 @@ export default function Register() {
 
                 const user = await response.json();
 
+                saveUser(user.user);
                 navigate("/");
             } else {
                 const message = await response.json();
@@ -77,13 +82,7 @@ export default function Register() {
     return (
         <>
             <div className={isLoading ? "loading-mask" : ""}>
-                <BounceLoader
-                    color={"#3cc3bd"}
-                    loading={isLoading}
-                    size={50}
-                    aria-label="Loading..."
-                    data-testid="loader"
-                />
+                <Loader isLoading={isLoading} />
             </div>
 
             {message && <div className="message-container">{message}</div>}

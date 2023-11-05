@@ -5,22 +5,32 @@ import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Profile from "./pages/Profile/Profile";
 import NotFound from "./components/NotFound/NotFound";
+import Loader from "./components/Loader/Loader";
+
+import { useGlobalContext } from "./context";
+import AuthenticatedUser from "./AuthenticatedUser";
 
 import "./App.css";
 
 function App() {
+    const { user, isLoading } = useGlobalContext();
+
     return (
         <div className="App">
-            <header></header>
-
             <main>
+                <div className={isLoading ? "loading-mask" : ""}>
+                    <Loader isLoading={isLoading} />
+                </div>
+
                 <Routes>
                     <Route path="/" element={<Home />} />
 
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
 
-                    <Route path="/profile" element={<Profile />} />
+                    <Route element={<AuthenticatedUser />}>
+                        <Route path="/profile" element={<Profile />} />
+                    </Route>
 
                     <Route path="*" element={<NotFound />} />
                 </Routes>
