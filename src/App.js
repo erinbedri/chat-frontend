@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Profile from "./pages/Profile/Profile";
+import Messages from "./pages/Messages/Messages";
 import NotFound from "./components/NotFound/NotFound";
 import Loader from "./components/Loader/Loader";
 
@@ -27,6 +28,8 @@ function App() {
 
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+
+                    <Route path="/messages" element={<Messages />} />
 
                     <Route element={<AuthenticatedUser />}>
                         <Route path="/profile" element={<Profile />} />

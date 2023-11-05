@@ -8,7 +8,7 @@ export default function Profile() {
         <>
             <Navigation />
 
-            <div>Profile</div>
+            <div className="container">Profile</div>
         </>
     );
 }

@@ -16,7 +16,7 @@
 .navigation-controls {
     width: 85%;
 
-    gap: 1.25rem;
+    gap: 1.75rem;
     display: flex;
     justify-content: end;
     align-items: center;

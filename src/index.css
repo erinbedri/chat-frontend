@@ -62,6 +62,12 @@ body {
     text-decoration: underline;
 }
 
+.container {
+    height: calc(100vh - 80px);
+
+    padding: 1rem 2rem;
+}
+
 /* LOADER */
 .loading-mask {
     position: fixed;

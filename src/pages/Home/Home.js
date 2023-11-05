@@ -8,7 +8,7 @@ export default function Home() {
         <>
             <Navigation />
 
-            <div>Home</div>
+            <div className="container">Home</div>
         </>
     );
 }

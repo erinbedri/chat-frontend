@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComments } from "@fortawesome/free-solid-svg-icons";
+import { faComments, faUserPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 
 import { useGlobalContext } from "../../contexts/context";
 import "./navigation.css";
 
 export default function Navigation() {
     const { user, logoutUser } = useGlobalContext();
-
-    const [isActive, setActive] = useState("");
 
     return (
         <div id="navigation">
@@ -22,9 +20,14 @@ export default function Navigation() {
             <div className="navigation-controls">
                 {user ? (
                     <>
-                        <NavLink className="link-light" to="/profile">
-                            <p>Profile</p>
+                        <NavLink to="/messages" className="link-light">
+                            Messages
                         </NavLink>
+
+                        <NavLink to="/profile" className="link-light">
+                            Profile
+                        </NavLink>
+
                         <p className="link-light" onClick={logoutUser}>
                             Logout
                         </p>
@@ -32,8 +35,9 @@ export default function Navigation() {
                 ) : (
                     <>
                         <NavLink className="link-light" to="/login">
-                            <p onClick={() => setActive("")}>Login</p>
+                            <p>Login</p>
                         </NavLink>
+
                         <NavLink className="link-light" to="/register">
                             <p>Register</p>
                         </NavLink>
