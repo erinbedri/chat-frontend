@@ -1,6 +1,6 @@
 import { Outlet, Navigate } from "react-router-dom";
 
-import { useGlobalContext } from "./context";
+import { useGlobalContext } from "./contexts/context";
 
 const AuthenticatedUser = ({ children }) => {
     const { user } = useGlobalContext();

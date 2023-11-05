@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-import { useGlobalContext } from "../../context";
+import { useGlobalContext } from "../../contexts/context";
 
 import { login } from "../../services/authService";
 import Loader from "../../components/Loader/Loader";

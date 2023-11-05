@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 
-import { logout } from "./services/authService";
+import { logout } from "../services/authService";
 
 const AppContext = React.createContext();
 const rootUrl = "http://localhost:5000";

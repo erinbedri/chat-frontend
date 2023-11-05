@@ -7,7 +7,7 @@ import Profile from "./pages/Profile/Profile";
 import NotFound from "./components/NotFound/NotFound";
 import Loader from "./components/Loader/Loader";
 
-import { useGlobalContext } from "./context";
+import { useGlobalContext } from "./contexts/context";
 import AuthenticatedUser from "./AuthenticatedUser";
 
 import "./App.css";
