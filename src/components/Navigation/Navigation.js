@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComments } from "@fortawesome/free-solid-svg-icons";
 
+import { logout } from "../../services/authService";
 import "./navigation.css";
 
 export default function Navigation() {
@@ -29,9 +30,9 @@ export default function Navigation() {
                     <p>Profile</p>
                 </NavLink>
 
-                <NavLink className="link-light" to="/logout">
-                    <p>Logout</p>
-                </NavLink>
+                <p className="link-light" onClick={logout}>
+                    Logout
+                </p>
             </div>
         </div>
     );

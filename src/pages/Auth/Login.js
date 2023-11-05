@@ -32,13 +32,14 @@ export default function Login() {
         try {
             const response = await login(formData.email, formData.password);
 
-            setFormData({
-                email: "",
-                password: "",
-            });
-
             if (response.status === 200) {
+                setFormData({
+                    email: "",
+                    password: "",
+                });
+
                 const user = await response.json();
+
                 navigate("/");
             } else {
                 const message = await response.json();

@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { BounceLoader } from "react-spinners";
 
+import { register } from "../../services/authService";
 import registerImage from "../../assets/images/register.png";
 import "./auth.css";
 
 export default function Register() {
+    const navigate = useNavigate();
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [message, setMessage] = useState("");
+
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -18,13 +25,69 @@ export default function Register() {
         }));
     };
 
-    const registerHandler = (e) => {
+    const registerHandler = async (e) => {
         e.preventDefault();
 
-        console.log(formData);
+        setIsLoading(true);
+
+        if (formData.password !== formData.rePassword) {
+            setMessage("Passwords do not match");
+
+            setTimeout(() => {
+                setMessage("");
+            }, 5000);
+
+            setIsLoading(false);
+            return;
+        }
+
+        try {
+            const response = await register(formData.email, formData.password);
+
+            if (response.status === 201) {
+                setFormData({
+                    email: "",
+                    password: "",
+                    rePassword: "",
+                });
+
+                const user = await response.json();
+
+                navigate("/");
+            } else {
+                const message = await response.json();
+                setMessage(message.msg);
+
+                setTimeout(() => {
+                    setMessage("");
+                }, 5000);
+            }
+
+            setIsLoading(false);
+        } catch (error) {
+            setMessage(error.message);
+
+            setTimeout(() => {
+                setMessage("");
+            }, 5000);
+
+            setIsLoading(false);
+        }
     };
     return (
         <>
+            <div className={isLoading ? "loading-mask" : ""}>
+                <BounceLoader
+                    color={"#3cc3bd"}
+                    loading={isLoading}
+                    size={50}
+                    aria-label="Loading..."
+                    data-testid="loader"
+                />
+            </div>
+
+            {message && <div className="message-container">{message}</div>}
+
             <div id="auth-container">
                 <div className="auth-left">
                     <NavLink to="/">

@@ -36,11 +36,13 @@ body {
 .link-light {
     text-decoration: none;
     color: white;
+    cursor: pointer;
 }
 
 .link-dark {
     text-decoration: none;
     color: var(--main-color);
+    cursor: pointer;
 }
 
 /* TEXT */
