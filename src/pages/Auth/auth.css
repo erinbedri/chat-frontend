@@ -53,3 +53,11 @@
 .auth-form > button {
     width: 100%;
 }
+
+.auth-form-group > input::placeholder {
+    color: lightgrey;
+    opacity: 1;
+}
+.auth-form-group > input::-ms-input-placeholder {
+    color: lightgrey;
+}

@@ -1,31 +1,69 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import loginImage from "../../assets/images/login.png";
 import "./auth.css";
 
 export default function Login() {
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+    });
+
+    const changeHandler = (e) => {
+        setFormData((oldData) => ({
+            ...oldData,
+            [e.target.name]: e.target.type == "checkbox" ? e.target.checked : e.target.value,
+        }));
+    };
+
+    const loginHandler = (e) => {
+        e.preventDefault();
+
+        console.log(formData);
+    };
+
     return (
         <>
             <div id="auth-container">
                 <div className="auth-left">
-                    <img src={loginImage} alt="login" />
+                    <NavLink to="/">
+                        <img src={loginImage} alt="login" />
+                    </NavLink>
                 </div>
 
                 <div className="auth-right">
                     <h1 className="text-dark">LOGIN</h1>
-                    <form className="auth-form">
+                    <form className="auth-form" onSubmit={loginHandler}>
                         <div className="auth-form-group">
                             <label className="text-dark" htmlFor="email">
-                                Email
+                                <b>Email</b>
                             </label>
-                            <input type="email" id="email" name="email" required />
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="john@doe.com"
+                                value={formData.email}
+                                onChange={changeHandler}
+                                autoComplete="on"
+                                required
+                            />
                         </div>
                         <div className="auth-form-group">
                             <label className="text-dark" htmlFor="password">
-                                Password
+                                <b>Password</b>
                             </label>
-                            <input type="password" id="password" name="password" required />
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="******"
+                                value={formData.password}
+                                onChange={changeHandler}
+                                autoComplete="on"
+                                required
+                            />
                         </div>
                         <button className="btn btn-dark" type="submit">
                             Login
@@ -33,10 +71,11 @@ export default function Login() {
                     </form>
 
                     <p>
-                        If you do not have an account, please{" "}
+                        If you do not have an account,{" "}
                         <NavLink className="link-dark" to="/register">
-                            register
-                        </NavLink>
+                            <b>register</b>
+                        </NavLink>{" "}
+                        first.
                     </p>
                 </div>
             </div>
