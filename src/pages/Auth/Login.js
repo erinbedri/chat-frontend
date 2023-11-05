@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { BounceLoader } from "react-spinners";
 
+import { login } from "../../services/authService";
 import loginImage from "../../assets/images/login.png";
 import "./auth.css";
 
 export default function Login() {
+    const navigate = useNavigate();
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [message, setMessage] = useState("");
+
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -17,21 +24,63 @@ export default function Login() {
         }));
     };
 
-    const loginHandler = (e) => {
+    const loginHandler = async (e) => {
         e.preventDefault();
 
-        console.log(formData);
+        setIsLoading(true);
+
+        try {
+            const response = await login(formData.email, formData.password);
+
+            setFormData({
+                email: "",
+                password: "",
+            });
+
+            if (response.status === 200) {
+                const user = await response.json();
+                navigate("/");
+            } else {
+                const message = await response.json();
+                setMessage(message.msg);
+
+                setTimeout(() => {
+                    setMessage("");
+                }, 5000);
+            }
+
+            setIsLoading(false);
+        } catch (error) {
+            setMessage(error.message);
+
+            setTimeout(() => {
+                setMessage("");
+            }, 5000);
+
+            setIsLoading(false);
+        }
     };
 
     return (
         <>
+            <div className={isLoading ? "loading-mask" : ""}>
+                <BounceLoader
+                    color={"#3cc3bd"}
+                    loading={isLoading}
+                    size={50}
+                    aria-label="Loading..."
+                    data-testid="loader"
+                />
+            </div>
+
+            {message && <div className="message-container">{message}</div>}
+
             <div id="auth-container">
                 <div className="auth-left">
                     <NavLink to="/">
                         <img src={loginImage} alt="login" />
                     </NavLink>
                 </div>
-
                 <div className="auth-right">
                     <h1 className="text-dark">LOGIN</h1>
                     <form className="auth-form" onSubmit={loginHandler}>
