@@ -12,6 +12,27 @@ body {
     background-color: var(--main-bg-color);
 }
 
+/* BUTTONS */
+.btn {
+    border: 1px solid var(--main-color);
+    border-radius: 1.25rem;
+    padding: 0.5rem 1.5rem;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-dark {
+    color: white;
+    background-color: var(--main-color);
+}
+
+.btn-dark:hover {
+    color: var(--main-color);
+    background-color: white;
+}
+
+/* LINKS */
 .link-light {
     text-decoration: none;
     color: white;
@@ -19,6 +40,15 @@ body {
 
 .link-dark {
     text-decoration: none;
+    color: var(--main-color);
+}
+
+/* TEXT */
+.text-light {
+    color: white;
+}
+
+.text-dark {
     color: var(--main-color);
 }
 

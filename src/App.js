@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 
-import Navigation from "./components/Navigation/Navigation";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
@@ -12,9 +11,7 @@ import "./App.css";
 function App() {
     return (
         <div className="App">
-            <header>
-                <Navigation />
-            </header>
+            <header></header>
 
             <main>
                 <Routes>
