@@ -53,18 +53,3 @@ export const logout = async () => {
         console.error(err);
     }
 };
-
-export const getCurrentUser = async () => {
-    try {
-        const response = await fetch(`${rootUrl}/api/v1/users/showMe`, {
-            method: "GET",
-            credentials: "include",
-            headers: {
-                "Content-type": "application/json",
-            },
-        });
-        return response;
-    } catch (err) {
-        console.error(err);
-    }
-};

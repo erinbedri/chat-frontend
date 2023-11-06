@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-import { useGlobalContext } from "../../contexts/context";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 import { register } from "../../services/authService";
 import Loader from "../../components/Loader/Loader";
@@ -11,7 +11,7 @@ import "./auth.css";
 export default function Register() {
     const navigate = useNavigate();
 
-    const { saveUser } = useGlobalContext();
+    const { saveUser } = useAuthContext();
 
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState("");

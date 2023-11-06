@@ -1,0 +1,79 @@
+.chats-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.chats-list {
+    width: 25%;
+}
+
+.chat-item {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    position: relative;
+
+    gap: 1rem;
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid var(--main-color);
+    border-radius: 1rem;
+}
+
+.chat-icon {
+    color: var(--main-color);
+    font-size: 1.75rem;
+}
+
+.chat-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.chat-time {
+    text-align: right;
+}
+
+.chat-notification {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    background-color: rgb(14, 197, 14);
+    color: white;
+    border-radius: 50%;
+    padding: 3px 8px;
+    font-size: 12px;
+}
+
+.chat-live {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    background-color: rgb(14, 197, 14);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.top-right {
+    top: -5px;
+    right: -5px;
+}
+
+.bottom-right {
+    bottom: -5px;
+    right: -5px;
+}
+
+.chat-box {
+    background-color: var(--secondary-color);
+
+    height: calc(100vh - 80px - 2rem);
+    width: 100%;
+
+    border: 1px solid var(--main-color);
+    border-radius: 1rem;
+}

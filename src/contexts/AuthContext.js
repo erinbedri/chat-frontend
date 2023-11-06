@@ -1,13 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
 
+import { getCurrentUser } from "../services/userService";
 import { logout } from "../services/authService";
 
 const AppContext = React.createContext();
 const rootUrl = "http://localhost:5000";
 
-const AppProvider = ({ children }) => {
+const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+
+    console.log(user);
 
     const saveUser = (user) => {
         setUser(user);
@@ -17,23 +20,24 @@ const AppProvider = ({ children }) => {
         setUser(null);
     };
 
-    const fetchUser = async () => {
-        try {
-            const response = await fetch(`${rootUrl}/api/v1/users/showMe`, {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                    "Content-type": "application/json",
-                },
-            });
+    useEffect(() => {
+        const fetchUser = async () => {
+            setIsLoading(true);
 
-            const data = await response.json();
-            saveUser(data.user);
-        } catch (error) {
-            removeUser();
-        }
-        setIsLoading(false);
-    };
+            const response = await getCurrentUser();
+
+            setIsLoading(false);
+
+            if (response.error) {
+                console.log(response.message);
+                return;
+            }
+
+            saveUser(response.user);
+        };
+
+        fetchUser();
+    }, []);
 
     const logoutUser = async () => {
         try {
@@ -43,10 +47,6 @@ const AppProvider = ({ children }) => {
             console.log(error);
         }
     };
-
-    useEffect(() => {
-        fetchUser();
-    }, []);
 
     return (
         <AppContext.Provider
@@ -62,8 +62,8 @@ const AppProvider = ({ children }) => {
     );
 };
 
-export const useGlobalContext = () => {
+export const useAuthContext = () => {
     return useContext(AppContext);
 };
 
-export { AppProvider };
+export { AuthContextProvider };

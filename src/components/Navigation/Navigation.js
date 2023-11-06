@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComments, faUserPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 
-import { useGlobalContext } from "../../contexts/context";
+import { useAuthContext } from "../../contexts/AuthContext";
 import "./navigation.css";
 
 export default function Navigation() {
-    const { user, logoutUser } = useGlobalContext();
+    const { user, logoutUser } = useAuthContext();
 
     return (
         <div id="navigation">
@@ -20,8 +20,8 @@ export default function Navigation() {
             <div className="navigation-controls">
                 {user ? (
                     <>
-                        <NavLink to="/messages" className="link-light">
-                            Messages
+                        <NavLink to="/chats" className="link-light">
+                            Chats
                         </NavLink>
 
                         <NavLink to="/profile" className="link-light">

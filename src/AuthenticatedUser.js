@@ -1,12 +1,14 @@
 import { Outlet, Navigate } from "react-router-dom";
 
-import { useGlobalContext } from "./contexts/context";
+import { useAuthContext } from "./contexts/AuthContext";
 
 const AuthenticatedUser = ({ children }) => {
-    const { user } = useGlobalContext();
+    const { user, isLoading } = useAuthContext();
 
-    if (!user) {
-        return <Navigate to={"/login"} replace />;
+    if (!isLoading) {
+        if (!user) {
+            return <Navigate to={"/login"} replace />;
+        }
     }
 
     return children ? children : <Outlet />;
