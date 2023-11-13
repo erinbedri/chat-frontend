@@ -1,5 +1,11 @@
 .chats-container {
     display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.chats-field {
+    display: flex;
     gap: 1rem;
 }
 
@@ -41,7 +47,7 @@
     position: absolute;
     bottom: -5px;
     right: -5px;
-    background-color: rgb(14, 197, 14);
+    background-color: var(--main-color);
     color: white;
     border-radius: 50%;
     padding: 3px 8px;
@@ -71,9 +77,24 @@
 .chat-box {
     background-color: var(--secondary-color);
 
-    height: calc(100vh - 80px - 2rem);
+    height: calc(100vh - 80px - 5rem);
     width: 100%;
 
+    border: 1px solid var(--main-color);
+    border-radius: 1rem;
+}
+
+.chats-potential {
+    display: flex;
+    gap: 1rem;
+    justify-content: start;
+    align-items: center;
+}
+.chat-potential {
+    position: relative;
+
+    background-color: var(--secondary-color);
+    padding: 1rem;
     border: 1px solid var(--main-color);
     border-radius: 1rem;
 }
