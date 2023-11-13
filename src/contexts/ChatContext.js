@@ -2,18 +2,24 @@ import React, { useContext, useState, useEffect, useCallback } from "react";
 
 import { getAllUsers } from "../services/userService";
 import { getAllChats, createChat } from "../services/chatService";
+import { getMessages } from "../services/messageService";
 
 const AppContext = React.createContext();
 
 const ChatContextProvider = ({ children, user }) => {
     const [userChats, setUserChats] = useState(null);
-    const [potentialChats, setPotentialChats] = useState([]);
-
     const [isUserChatLoading, setIsUserChatLoading] = useState(false);
     const [userChatsError, setUserChatsError] = useState(null);
 
+    const [potentialChats, setPotentialChats] = useState([]);
     const [isPotentialChatLoading, setIsPotentialChatLoading] = useState(false);
     const [potentialChatsError, setPotentialChatsError] = useState(null);
+
+    const [currentChat, setCurrentChat] = useState(null);
+
+    const [messages, setMessages] = useState(null);
+    const [isMessagesLoading, setIsMessagesLoading] = useState(false);
+    const [messagesError, setMessagesError] = useState(null);
 
     useEffect(() => {
         const getUsers = async () => {
@@ -67,6 +73,29 @@ const ChatContextProvider = ({ children, user }) => {
         getUserChats();
     }, [user]);
 
+    useEffect(() => {
+        const getChatMessages = async () => {
+            setIsMessagesLoading(true);
+            setMessagesError(null);
+
+            const response = await getMessages(currentChat?._id);
+
+            setIsMessagesLoading(false);
+
+            if (response.error) {
+                return setMessagesError(response);
+            }
+
+            setMessages(response);
+        };
+
+        getChatMessages();
+    }, [currentChat]);
+
+    const updateCurrentChat = useCallback((chat) => {
+        setCurrentChat(chat);
+    }, []);
+
     const createNewChat = useCallback(async (id) => {
         const response = await createChat(id);
 
@@ -88,7 +117,14 @@ const ChatContextProvider = ({ children, user }) => {
                 isPotentialChatLoading,
                 potentialChatsError,
 
+                messages,
+                isMessagesLoading,
+                messagesError,
+
+                currentChat,
+
                 createNewChat,
+                updateCurrentChat,
             }}
         >
             {children}

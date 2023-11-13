@@ -30,7 +30,6 @@ export const getAllChats = async () => {
 };
 
 export const createChat = async (id) => {
-    console.log(id);
     try {
         const response = await fetch(`${rootUrl}/api/v1/chats`, {
             method: "POST",

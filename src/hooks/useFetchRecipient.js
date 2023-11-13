@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { getUser } from "../services/userService";
 
-export const useFetchRecepient = ({ chat, user }) => {
+export const useFetchRecepient = (chat, user) => {
     const [recipientUser, setRecipientUser] = useState(null);
     const [error, setError] = useState(null);
 
@@ -22,7 +22,7 @@ export const useFetchRecepient = ({ chat, user }) => {
         };
 
         fetchUser();
-    }, []);
+    }, [recipientId]);
 
-    return { recipientUser, error };
+    return { recipientUser };
 };

@@ -4,7 +4,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 import { useFetchRecepient } from "../../hooks/useFetchRecipient";
 
-export default function UserChat(chat, user) {
+export default function UserChat({ chat, user }) {
     const { recipientUser } = useFetchRecepient(chat, user);
 
     return (

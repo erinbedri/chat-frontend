@@ -4,7 +4,26 @@
     gap: 1rem;
 }
 
-.chats-field {
+/* POTENTIAL SECTION */
+.potential-section {
+    display: flex;
+    gap: 1rem;
+    justify-content: start;
+    align-items: center;
+}
+.potential-section .potential-element {
+    position: relative;
+
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    border: 1px solid var(--main-color);
+    border-radius: 1rem;
+
+    cursor: pointer;
+}
+
+/* CHATS SECTION */
+.chats-section {
     display: flex;
     gap: 1rem;
 }
@@ -26,6 +45,8 @@
     margin-bottom: 0.5rem;
     border: 1px solid var(--main-color);
     border-radius: 1rem;
+
+    cursor: pointer;
 }
 
 .chat-icon {
@@ -74,27 +95,38 @@
     right: -5px;
 }
 
-.chat-box {
+.chat-messages {
     background-color: var(--secondary-color);
 
     height: calc(100vh - 80px - 5rem);
     width: 100%;
 
-    border: 1px solid var(--main-color);
-    border-radius: 1rem;
-}
-
-.chats-potential {
-    display: flex;
-    gap: 1rem;
-    justify-content: start;
-    align-items: center;
-}
-.chat-potential {
-    position: relative;
-
-    background-color: var(--secondary-color);
     padding: 1rem;
     border: 1px solid var(--main-color);
     border-radius: 1rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-message {
+    padding: 1rem;
+    margin-top: 0.75rem;
+
+    background-color: var(--main-bg-color);
+    border-radius: 1rem;
+}
+
+.chat-sender {
+    background-color: var(-main-color);
+
+    margin-left: auto;
+    width: fit-content;
+}
+
+.chat-recipient {
+    background-color: var(--main-color);
+
+    margin-right: auto;
+    width: fit-content;
 }
