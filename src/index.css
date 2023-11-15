@@ -94,3 +94,27 @@ body {
     padding: 1rem;
     border-radius: 2rem;
 }
+
+/* SCROLLBAR */
+/* Width */
+::-webkit-scrollbar {
+    width: 5px;
+    margin-left: 1rem; /* Add left margin */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 1rem; /* Set border radius */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 1rem; /* Set border radius */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

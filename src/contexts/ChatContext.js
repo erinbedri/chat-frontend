@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, useCallback } from "react";
 
 import { getAllUsers } from "../services/userService";
 import { getAllChats, createChat } from "../services/chatService";
-import { getMessages } from "../services/messageService";
+import { getMessages, createMessage } from "../services/messageService";
 
 const AppContext = React.createContext();
 
@@ -20,6 +20,9 @@ const ChatContextProvider = ({ children, user }) => {
     const [messages, setMessages] = useState(null);
     const [isMessagesLoading, setIsMessagesLoading] = useState(false);
     const [messagesError, setMessagesError] = useState(null);
+
+    const [sendTextMessageError, setSendTextMessageError] = useState(null);
+    const [newMessage, setNewMessage] = useState(null);
 
     useEffect(() => {
         const getUsers = async () => {
@@ -106,6 +109,20 @@ const ChatContextProvider = ({ children, user }) => {
         setUserChats((prevState) => [...prevState, response]);
     }, []);
 
+    const sendTextMessage = useCallback(async (textMessage, currentChatId, setTextMessage) => {
+        if (!textMessage) return;
+
+        const response = await createMessage(currentChatId, textMessage);
+
+        if (response.error) {
+            return setSendTextMessageError(response);
+        }
+
+        setNewMessage(response);
+        setMessages((prevState) => [...prevState, response]);
+        setTextMessage("");
+    }, []);
+
     return (
         <AppContext.Provider
             value={{
@@ -125,6 +142,10 @@ const ChatContextProvider = ({ children, user }) => {
 
                 createNewChat,
                 updateCurrentChat,
+
+                sendTextMessage,
+                setSendTextMessageError,
+                setNewMessage,
             }}
         >
             {children}

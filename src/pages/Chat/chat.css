@@ -1,7 +1,6 @@
 .chats-container {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
 }
 
 /* POTENTIAL SECTION */
@@ -10,26 +9,40 @@
     gap: 1rem;
     justify-content: start;
     align-items: center;
+    padding: 0.5rem;
+
+    overflow-y: hidden; /* Enable vertical scrolling */
+    overflow-x: auto; /* Hide horizontal scrollbar */
 }
 .potential-section .potential-element {
     position: relative;
 
+    font-size: 0.75rem;
+
     background-color: var(--secondary-color);
-    padding: 1rem;
+    padding: 0.25rem 0.75rem;
     border: 1px solid var(--main-color);
     border-radius: 1rem;
 
     cursor: pointer;
+
+    margin-bottom: 0.5rem;
 }
 
 /* CHATS SECTION */
 .chats-section {
     display: flex;
-    gap: 1rem;
 }
 
 .chats-list {
     width: 25%;
+}
+
+.list-scrollable {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100vh - 80px - 5rem);
+    padding: 0.25rem 1rem 0rem 0.25rem;
 }
 
 .chat-item {
@@ -39,9 +52,11 @@
 
     position: relative;
 
+    font-size: 0.85rem;
+
     gap: 1rem;
     background-color: var(--secondary-color);
-    padding: 1rem;
+    padding: 0.75rem;
     margin-bottom: 0.5rem;
     border: 1px solid var(--main-color);
     border-radius: 1rem;
@@ -83,6 +98,8 @@
     width: 15px;
     height: 15px;
     border-radius: 50%;
+
+    z-index: 999;
 }
 
 .top-right {
@@ -102,11 +119,14 @@
     width: 100%;
 
     padding: 1rem;
+    margin-top: 0.25rem;
     border: 1px solid var(--main-color);
     border-radius: 1rem;
 
     display: flex;
     flex-direction: column;
+
+    position: relative;
 }
 
 .chat-message {
@@ -117,11 +137,19 @@
     border-radius: 1rem;
 }
 
+.chat-message > p {
+    font-size: 0.7rem;
+}
+
 .chat-sender {
     background-color: var(-main-color);
 
     margin-left: auto;
+    margin-right: 1rem;
     width: fit-content;
+    max-width: 70%;
+
+    text-align: right;
 }
 
 .chat-recipient {
@@ -129,4 +157,48 @@
 
     margin-right: auto;
     width: fit-content;
+    max-width: 70%;
+}
+
+.chat-input {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+
+    background-color: white;
+    border: none;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.chat-input:focus {
+    outline: none !important;
+    border: 1px solid var(--main-bg-color);
+    box-shadow: 0 0 10px #719ece;
+}
+
+.chat-send {
+    position: absolute;
+    bottom: 12px;
+    right: 20px;
+
+    color: var(--main-color);
+    background-color: white;
+    border: none;
+
+    font-size: 2rem;
+
+    transition: 0.3s;
+}
+
+.chat-send:hover {
+    color: var(--secondary-color);
+}
+
+.chat-scrollable {
+    overflow-y: auto;
+
+    margin-top: 1.5rem;
+    margin-bottom: 4rem;
 }
