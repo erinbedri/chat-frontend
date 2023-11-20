@@ -39,8 +39,6 @@ export const getUser = async (id) => {
             },
         });
 
-        console.log(response);
-
         const data = await response.json();
 
         if (!response.ok) {
