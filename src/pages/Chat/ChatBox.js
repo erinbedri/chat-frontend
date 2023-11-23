@@ -8,7 +8,7 @@ export default function ChatBox({ message }) {
     return (
         <div className={`chat-message ${user.userId == message.sender ? "chat-sender" : "chat-recipient"}`}>
             {message.text}
-            <p>{new Date().toLocaleString("en-DE", message.createdAt)}</p>
+            <p>{new Date(message.createdAt).toLocaleString("en-DE")}</p>
         </div>
     );
 }

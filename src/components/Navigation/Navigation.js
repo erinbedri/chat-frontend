@@ -20,6 +20,8 @@ export default function Navigation() {
             <div className="navigation-controls">
                 {user ? (
                     <>
+                        <p className="link-light">{user.email}</p>
+
                         <NavLink to="/chats" className="link-light">
                             Chats
                         </NavLink>
