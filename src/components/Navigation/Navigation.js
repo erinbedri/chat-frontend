@@ -4,10 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComments, faUserPlus, faUser } from "@fortawesome/free-solid-svg-icons";
 
 import { useAuthContext } from "../../contexts/AuthContext";
+import { useChatContext } from "../../contexts/ChatContext";
+import { unreadNotificationsFunc } from "../../utils/unreadNotifications";
+
 import "./navigation.css";
 
 export default function Navigation() {
     const { user, logoutUser } = useAuthContext();
+    const { notifications } = useChatContext();
+
+    const unreadNotifications = unreadNotificationsFunc(notifications);
 
     return (
         <div id="navigation">
@@ -22,9 +28,14 @@ export default function Navigation() {
                     <>
                         <p className="link-light">{user.email}</p>
 
-                        <NavLink to="/chats" className="link-light">
-                            Chats
-                        </NavLink>
+                        <div className="notification-parent">
+                            <NavLink to="/chats" className="link-light">
+                                Chats
+                            </NavLink>
+                            {unreadNotifications?.length > 0 && (
+                                <span className="notification">{unreadNotifications?.length}</span>
+                            )}
+                        </div>
 
                         <NavLink to="/profile" className="link-light">
                             Profile

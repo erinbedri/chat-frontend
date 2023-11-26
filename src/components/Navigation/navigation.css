@@ -23,3 +23,20 @@
 
     font-size: 1.25rem;
 }
+
+.notification-parrent {
+    position: absolute;
+}
+.notification {
+    position: relative;
+    top: -15px;
+
+    background-color: red;
+    border: none;
+    color: white;
+    font-size: 0.85rem;
+
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 50%;
+}

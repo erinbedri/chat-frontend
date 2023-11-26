@@ -28,6 +28,8 @@ const ChatContextProvider = ({ children, user }) => {
     const [socket, setSocket] = useState(null);
     const [onlineUsers, setOnlineUsers] = useState([]);
 
+    const [notifications, setNotifications] = useState([]);
+
     useEffect(() => {
         const newSocket = io("http://localhost:5000");
         setSocket(newSocket);
@@ -59,7 +61,7 @@ const ChatContextProvider = ({ children, user }) => {
         socket.emit("sendMessage", { ...newMessage, recipientId });
     }, [newMessage]);
 
-    // receive message
+    // receive message and notification
     useEffect(() => {
         if (socket === null) return;
 
@@ -69,8 +71,19 @@ const ChatContextProvider = ({ children, user }) => {
             setMessages((prevState) => [...prevState, res]);
         });
 
+        socket.on("getNotification", (res) => {
+            const isChatOpen = currentChat?.members.some((id) => id === res.senderId);
+
+            if (isChatOpen) {
+                setNotifications((prev) => [{ ...res, isRead: true }, ...prev]);
+            } else {
+                setNotifications((prev) => [res, ...prev]);
+            }
+        });
+
         return () => {
             socket.off("getMessage");
+            socket.off("getNotification");
         };
     }, [socket, currentChat]);
 
@@ -147,6 +160,8 @@ const ChatContextProvider = ({ children, user }) => {
 
     const updateCurrentChat = useCallback((chat) => {
         setCurrentChat(chat);
+
+        markNotificationsAsRead();
     }, []);
 
     const createNewChat = useCallback(async (id) => {
@@ -173,6 +188,20 @@ const ChatContextProvider = ({ children, user }) => {
         setTextMessage("");
     }, []);
 
+    const markNotificationsAsRead = useCallback(() => {
+        const modifiedNotifications = notifications.map((notification) => {
+            const isChatOpen = currentChat?.members.some((id) => id === notification.senderId);
+
+            if (isChatOpen) {
+                return { ...notification, isRead: true };
+            }
+        });
+
+        setNotifications(modifiedNotifications);
+    }, []);
+
+    console.log(notifications);
+
     return (
         <AppContext.Provider
             value={{
@@ -198,6 +227,8 @@ const ChatContextProvider = ({ children, user }) => {
                 setNewMessage,
 
                 onlineUsers,
+                notifications,
+                markNotificationsAsRead,
             }}
         >
             {children}
