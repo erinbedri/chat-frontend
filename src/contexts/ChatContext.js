@@ -161,7 +161,7 @@ const ChatContextProvider = ({ children, user }) => {
     const updateCurrentChat = useCallback((chat) => {
         setCurrentChat(chat);
 
-        markNotificationsAsRead();
+        //markNotificationsAsRead();
     }, []);
 
     const createNewChat = useCallback(async (id) => {
@@ -188,19 +188,16 @@ const ChatContextProvider = ({ children, user }) => {
         setTextMessage("");
     }, []);
 
-    const markNotificationsAsRead = useCallback(() => {
-        const modifiedNotifications = notifications.map((notification) => {
-            const isChatOpen = currentChat?.members.some((id) => id === notification.senderId);
+    const markNotificationsAsRead = () => {
+        const modifiedNotifications = notifications?.map((notification) => {
+            const chatMembers = [user.userId, notification.senderId];
+            const isDesiredChat = currentChat.members.every((member) => chatMembers.includes(member));
 
-            if (isChatOpen) {
-                return { ...notification, isRead: true };
-            }
+            return isDesiredChat ? { ...notification, isRead: true } : notification;
         });
 
         setNotifications(modifiedNotifications);
-    }, []);
-
-    console.log(notifications);
+    };
 
     return (
         <AppContext.Provider

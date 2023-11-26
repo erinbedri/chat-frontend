@@ -35,6 +35,8 @@ export default function Chat() {
         sendTextMessage,
         setSendTextMessageError,
         setNewMessage,
+
+        markNotificationsAsRead,
     } = useChatContext();
 
     const { recipientUser } = useFetchRecepient(currentChat, user);

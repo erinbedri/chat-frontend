@@ -7,9 +7,15 @@ import { useFetchRecepient } from "../../hooks/useFetchRecipient";
 
 export default function UserChat({ chat, user }) {
     const { recipientUser } = useFetchRecepient(chat, user);
-    const { onlineUsers } = useChatContext();
+    const { onlineUsers, notifications } = useChatContext();
 
     const isOnline = onlineUsers?.some((u) => recipientUser?._id === u.userId);
+
+    const countNotifications = notifications.filter(
+        (notification) => notification.senderId === recipientUser._id
+    ).length;
+
+    console.log(countNotifications);
 
     return (
         <div key={chat._id} className="chat-item">
@@ -28,7 +34,7 @@ export default function UserChat({ chat, user }) {
             </div>
 
             {isOnline ? <div className="chat-live"></div> : ""}
-            <div className="chat-notification">3</div>
+            {countNotifications > 0 && <div className="chat-notification">{countNotifications}</div>}
         </div>
     );
 }
