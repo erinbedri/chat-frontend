@@ -12,10 +12,8 @@ export default function UserChat({ chat, user }) {
     const isOnline = onlineUsers?.some((u) => recipientUser?._id === u.userId);
 
     const countNotifications = notifications.filter(
-        (notification) => notification.senderId === recipientUser._id
+        (notification) => notification.senderId === recipientUser?._id
     ).length;
-
-    console.log(countNotifications);
 
     return (
         <div key={chat._id} className="chat-item">
