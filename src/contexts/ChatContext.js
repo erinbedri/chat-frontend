@@ -31,7 +31,7 @@ const ChatContextProvider = ({ children, user }) => {
     const [notifications, setNotifications] = useState([]);
 
     useEffect(() => {
-        const newSocket = io(process.env.REACT_APP_ROOT_URL);
+        const newSocket = io(process.env.SOCKET_URL);
         setSocket(newSocket);
 
         return () => {
