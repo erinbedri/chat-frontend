@@ -1,4 +1,4 @@
-const rootUrl = "http://localhost:5000";
+const rootUrl = process.env.REACT_APP_ROOT_URL;
 
 export const getMessages = async (id) => {
     try {
