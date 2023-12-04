@@ -26,7 +26,7 @@ export default function Navigation() {
             <div className="navigation-controls">
                 {user ? (
                     <>
-                        <p className="link-light">{user.email}</p>
+                        <p className="link-light navigation-email">{user.email}</p>
 
                         <div className="notification-parent">
                             <NavLink to="/chats" className="link-light">

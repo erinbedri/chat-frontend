@@ -27,6 +27,7 @@
 .notification-parrent {
     position: absolute;
 }
+
 .notification {
     position: relative;
     top: -15px;
@@ -39,4 +40,18 @@
     text-decoration: none;
     padding: 0.25rem 0.5rem;
     border-radius: 50%;
+}
+
+@media screen and (max-device-width: 480px) and (orientation: portrait) {
+    .navigation-logo > a {
+        font-size: 5rem;
+    }
+
+    .navigation-controls {
+        font-size: 2.5rem;
+    }
+
+    .navigation-email {
+        display: none;
+    }
 }

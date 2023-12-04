@@ -61,3 +61,41 @@
 .auth-form-group > input::-ms-input-placeholder {
     color: lightgrey;
 }
+
+@media screen and (max-device-width: 480px) and (orientation: portrait) {
+    #auth-container {
+        font-size: 2.5rem;
+    }
+
+    .auth-left {
+        display: none;
+    }
+
+    .auth-right {
+        width: 100%;
+    }
+
+    .auth-right > h1 {
+        margin-bottom: 3rem;
+    }
+
+    .auth-right > p {
+        margin-top: 3rem;
+    }
+
+    .auth-form {
+        width: 60%;
+    }
+
+    .auth-form-group {
+        margin: 1rem 0rem 5rem 0rem;
+    }
+
+    .auth-form-group > input {
+        padding: 2.75rem 1rem;
+    }
+
+    .auth-form > button {
+        padding: 2rem;
+    }
+}
