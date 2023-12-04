@@ -31,8 +31,12 @@ const ChatContextProvider = ({ children, user }) => {
     const [notifications, setNotifications] = useState([]);
 
     useEffect(() => {
-        const newSocket = io(process.env.SOCKET_URL);
+        const newSocket = io(process.env.REACT_APP_SOCKET_URL);
+        //const newSocket = io("http://localhost:5000");
+
         setSocket(newSocket);
+
+        console.log(newSocket);
 
         return () => {
             newSocket.disconnect();

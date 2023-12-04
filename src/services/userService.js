@@ -1,4 +1,4 @@
-const rootUrl = process.env.REACT_APP_ROOT_URL;
+const rootUrl = process.env.REACT_APP_BACKEND_URL;
 
 export const getAllUsers = async (id) => {
     try {
