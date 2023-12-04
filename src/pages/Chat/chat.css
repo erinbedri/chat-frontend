@@ -71,12 +71,14 @@
 
 .chat-info {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
 }
 
 .chat-time {
     text-align: right;
+    font-size: 0.75rem;
 }
 
 .chat-notification {

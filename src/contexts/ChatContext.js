@@ -225,6 +225,7 @@ const ChatContextProvider = ({ children, user }) => {
 
                 sendTextMessage,
                 setSendTextMessageError,
+                newMessage,
                 setNewMessage,
 
                 onlineUsers,
