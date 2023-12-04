@@ -18,6 +18,9 @@ import "./App.css";
 function App() {
     const { user, isLoading } = useAuthContext();
 
+    console.log("URL:", process.env.REACT_APP_ROOT_URL);
+    console.log("ENV:", process.env.NODE_ENV);
+
     return (
         <ChatContextProvider user={user}>
             <div className="App">
