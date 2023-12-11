@@ -1,0 +1,28 @@
+#home-container {
+    display: flex;
+    padding: 5rem 10rem;
+    gap: 1rem;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.home-left {
+    width: 50%;
+}
+
+.home-image {
+    height: 450px;
+}
+
+.home-right {
+    width: 50%;
+}
+
+.home-right > h1 {
+    margin-bottom: 1.25rem;
+}
+
+.home-right > p {
+    margin-bottom: 1rem;
+}

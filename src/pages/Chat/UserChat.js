@@ -31,10 +31,10 @@ export default function UserChat({ chat, user }) {
                 </p>
 
                 <div>
-                    <div>
+                    <div className="chat-text">
                         {lastMessage?.text && lastMessage.text.length > 25
                             ? `${lastMessage.text.slice(0, 25)}...`
-                            : lastMessage.text}
+                            : lastMessage?.text}
                     </div>
                     <div className="chat-time">
                         {lastMessage ? new Date(lastMessage.createdAt).toLocaleString("en-DE") : null}

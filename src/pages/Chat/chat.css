@@ -76,9 +76,14 @@
     width: 100%;
 }
 
+.chat-text {
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+}
+
 .chat-time {
     text-align: right;
-    font-size: 0.75rem;
+    font-size: 0.6rem;
 }
 
 .chat-notification {
